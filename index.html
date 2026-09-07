@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year & Happy Birthday Afsana!</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0, #fce4ec);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #4a1525;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(15px);
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(216, 27, 96, 0.15);
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            z-index: 10;
+            position: relative;
+        }
+        h1 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #d81b60;
+        }
+        p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #6a1b4d;
+        }
+        .btn {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: #fff;
+            border: none;
+            padding: 12px 28px;
+            font-size: 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+            transition: 0.2s;
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            margin-top: 15px;
+            min-height: 50px;
+        }
+        #noBtn {
+            background: #e0e0e0;
+            color: #333;
+            position: absolute;
+        }
+        .hidden {
+            display: none;
+        }
+        .balloon-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .balloon {
+            width: 50px;
+            height: 65px;
+            background: #ff6584;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1), 0 5px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .balloon.popped {
+            transform: scale(0);
+            opacity: 0;
+        }
+        .flower-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .flower-btn {
+            background: #ffebee;
+            border: 2px solid #ff80ab;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .flower-btn:hover {
+            background: #ff80ab;
+            color: white;
+            transform: scale(1.1);
+        }
+        .reason-box {
+            background: #fff;
+            border: 1px solid #f8bbd0;
+            padding: 12px;
+            border-radius: 12px;
+            min-height: 50px;
+            font-size: 13px;
+            color: #ad1457;
+            margin-bottom: 20px;
+        }
+        .envelope {
+            background: #f48fb1;
+            width: 140px;
+            height: 100px;
+            margin: 20px auto;
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .photo-item {
+            width: 100%;
+            height: 110px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #ff80ab;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- STEP 1: Welcome & Question -->
+        <div id="step1">
+            <h1>Happy Birthday, Afsana ❤️</h1>
+            <p>I created a little something just for you, to celebrate how beautiful you make my life. Ready to see it?</p>
+            <div class="btn-group">
+                <button class="btn" onclick="goToStep(2)">Yes! 🥰</button>
+                <button class="btn" id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()" onclick="moveNo()">No 😒</button>
+            </div>
+        </div>
+
+        <!-- STEP 2: Pop the Balloons -->
+        <div id="step2" class="hidden">
+            <h1>Pop the Balloons 🎈</h1>
+            <p>Pop each balloon to reveal a message, Afsana...</p>
+            <div class="balloon-container">
+                <div class="balloon" style="background:#ff5252;" onclick="popBalloon(this, 'Afsana,')">1</div>
+                <div class="balloon" style="background:#ff4081;" onclick="popBalloon(this, 'you')">2</div>
+                <div class="balloon" style="background:#e040fb;" onclick="popBalloon(this, 'are')">3</div>
+                <div class="balloon" style="background:#7c4dff;" onclick="popBalloon(this, 'my world!')">4</div>
+            </div>
+            <p id="balloonMessage" style="font-weight: bold; color: #d81b60; min-height: 25px;"></p>
+            <button class="btn hidden" id="balloonNext" onclick="goToStep(3)">Continue ➜</button>
+        </div>
+
+        <!-- STEP 3: Cake Wish with Photo Preview -->
+        <div id="step3" class="hidden">
+            <h1>Make a wish, Afsana... 🎂</h1>
+            <p>Close your eyes and hold a special wish in your heart.</p>
+            <div style="font-size: 50px; margin: 10px 0;">🎂</div>
+            <div class="photo-grid" style="margin-top: 15px;">
+                <div class="photo-item"><img src="1787492857297.jpg" alt="Afsana 1"></div>
+                <div class="photo-item"><img src="1785771532832.jpg" alt="Afsana 2"></div>
+            </div>
+            <button class="btn" onclick="goToStep(4)" style="margin-top: 10px;">Continue ➜</button>
+        </div>
+
+        <!-- STEP 4: Flowers & Reasons -->
+        <div id="step4" class="hidden">
+            <h1>For Afsana, who brings beauty to my world 🌷</h1>
+            <p style="font-size: 12px; margin-bottom: 10px;">Tap the icons below to reveal why I love you...</p>
+            <div class="flower-icons">
+                <button class="flower-btn" onclick="showReason(1)">💖</button>
+                <button class="flower-btn" onclick="showReason(2)">✨</button>
+                <button class="flower-btn" onclick="showReason(3)">⭐</button>
+            </div>
+            <div class="reason-box" id="reasonText">Tap an icon above to read my note...</div>
+            <button class="btn" onclick="goToStep(5)">Continue ➜</button>
+        </div>
+
+        <!-- STEP 5: Love Letter with 169 Days Counter -->
+        <div id="step5" class="hidden">
+            <h1>A letter carrying all my love, Afsana... 💌</h1>
+            <div class="envelope" onclick="openLetter()">Tap to Open 💌</div>
+            <div id="letterContent" class="hidden" style="text-align: left; font-size: 13px; max-height: 180px; overflow-y: auto; padding: 10px; background: #fff; border-radius: 10px; border: 1px solid #f8bbd0; margin-bottom: 15px;">
+                <p><b>To my dearest Afsana ❤️</b></p>
+                <p>Happy Birthday, my love! From July 16 to January 1, we have spent <b>169 days</b> of pure happiness together. You are the most beautiful part of my world, and every single day with you feels like a gift. Thank you for being my safe space and my greatest joy. I love you endlessly!</p>
+            </div>
+            <button class="btn hidden" id="letterNext" onclick="goToStep(6)">Continue ➜</button>
+        </div>
+
+        <!-- STEP 6: Final Gift & All 4 Photos -->
+        <div id="step6" class="hidden">
+            <h1>One Last Thing, Afsana... 🎁</h1>
+            <p>A tiny token of my love, just for you. Tap the gift to open it!</p>
+            <div id="giftBox" style="font-size: 60px; cursor: pointer; margin: 15px 0;" onclick="openGift()">🎁</div>
+            <div id="finalSurprise" class="hidden">
+                <div class="photo-grid">
+                    <div class="photo-item"><img src="1787492857297.jpg" alt="Afsana 1"></div>
+                    <div class="photo-item"><img src="1785771532832.jpg" alt="Afsana 2"></div>
+                    <div class="photo-item"><img src="1788702580521.jpg" alt="Afsana 3"></div>
+                    <div class="photo-item"><img src="1786034873254.jpg" alt="Afsana 4"></div>
+                </div>
+                <h1>Lots of love for you, Afsana! ❤️</h1>
+                <p style="font-size: 13px;">Once again, Happy Birthday! You mean everything to me, and I hope this little surprise made you smile!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let poppedCount = 0;
+
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            const x = (Math.random() - 0.5) * 160;
+            const y = (Math.random() - 0.5) * 80;
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function goToStep(stepNum) {
+            document.querySelectorAll('.container > div').forEach(el => el.classList.add('hidden'));
+            document.getElementById('step' + stepNum).classList.remove('hidden');
+            confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
+        }
+
+        function popBalloon(element, word) {
+            if(!element.classList.contains('popped')) {
+                element.classList.add('popped');
+                poppedCount++;
+                document.getElementById('balloonMessage').innerText += ' ' + word;
+                if(poppedCount === 4) {
+                    document.getElementById('balloonNext').classList.remove('hidden');
+                    confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
+                }
+            }
+        }
+
+        function showReason(num) {
+            const reasons = {
+                1: "Your Warm Heart: Your infinite kindness, gentle nature, and the deep warmth you bring into my life every single day, Afsana.",
+                2: "Our Shared Laughter: The silly inside jokes, the endless laughs, and how you make me feel completely myself around you.",
+                3: "My Constant Inspiration: Your unwavering belief in me, your strength, and the beautiful way you inspire me to grow."
+            };
+            document.getElementById('reasonText').innerText = reasons[num];
+        }
+
+        function openLetter() {
+            document.querySelector('.envelope').style.display = 'none';
+            document.getElementById('letterContent').classList.remove('hidden');
+            document.getElementById('letterNext').classList.remove('hidden');
+            confetti({ particleCount: 60, spread: 50, origin: { y: 0.6 } });
+        }
+
+        function openGift() {
+            document.getElementById('giftBox').style.display = 'none';
+            document.getElementById('finalSurprise').classList.remove('hidden');
+            confetti({ particleCount: 200, spread: 120, origin: { y: 0.5 } });
+        }
+    </script>
+</body>
+  </html>
