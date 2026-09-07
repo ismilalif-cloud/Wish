@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year & Happy Birthday Afsana!</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #1a1a2e, #16213e, #0f3460);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            max-width: 380px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        h1 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #f1f1f1;
+        }
+        .highlight {
+            color: #ff6584;
+            font-weight: bold;
+        }
+        .days-box {
+            background: rgba(255, 101, 132, 0.2);
+            border: 1px dashed #ff6584;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #ffccd5;
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .photo-item {
+            width: 100%;
+            height: 110px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #ff6584;
+            box-shadow: 0 0 10px rgba(255, 101, 132, 0.4);
+        }
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            margin-top: 15px;
+        }
+        .btn {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+            transition: 0.2s;
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        #noBtn {
+            background: rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+        .hidden-content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainCard">
+        <div id="step1">
+            <h1>❤️ Hey Afsana! ❤️</h1>
+            <p>Will you accept my New Year surprise and be my forever favorite person?</p>
+            <div class="btn-group">
+                <button class="btn" onclick="nextStep()">Yes! 🥰</button>
+                <button class="btn" id="noBtn" onmouseover="moveNo()" onclick="moveNo()">No 😒</button>
+            </div>
+        </div>
+
+        <div id="step2" class="hidden-content">
+            <h1>🎉 Happy New Year & Birthday, Afsana! 🎆</h1>
+            <p>It's not just a new year... <br><span class="highlight">It's our dearest Afsana's special day!</span> ❤️</p>
+            
+            <div class="days-box">
+                ✨ From July 16 to January 1 <br><b>169 days</b> of pure happiness with Afsana! ✨
+            </div>
+
+            <button class="btn" onclick="finalStep()">Open Memories 🎁</button>
+        </div>
+
+        <div id="step3" class="hidden-content">
+            <div class="photo-grid">
+                <div class="photo-item"><img src="1787492857297.jpg" alt="Afsana 1"></div>
+                <div class="photo-item"><img src="1785771532832.jpg" alt="Afsana 2"></div>
+                <div class="photo-item"><img src="1788702580521.jpg" alt="Afsana 3"></div>
+                <div class="photo-item"><img src="1786034873254.jpg" alt="Afsana 4"></div>
+            </div>
+            <h1>Happy Birthday, Afsana! 🎂</h1>
+            <p>Afsana, you are the best thing that has ever happened to me. Thank you for filling my life with so much love. I love you endlessly! ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            const x = Math.random() * 140 - 70;
+            const y = Math.random() * 100 - 50;
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function nextStep() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+        }
+
+        function finalStep() {
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'block';
+            confetti({
+                particleCount: 150,
+                spread: 100,
+                origin: { y: 0.5 }
+            });
+        }
+    </script>
+</body>
+                                                 </html>
